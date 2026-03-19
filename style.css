@@ -1,0 +1,733 @@
+/* =====================
+    GLOBAL / BASE STYLES
+   ===================== */
+
+:root {
+    --bg: #1a1a1a;
+    --gold: #f0e68c;
+    --gold-dark: #d4c873;
+    --felt: #1a5c38;
+    --felt-light: #1e6b40;
+    --felt-dark: #144d2f;
+    --table-wood: #5c3317;
+    --table-border: #3d2010;
+    --card-bg: #ffffff;
+    --red: #cc0000;
+    --black: #1a1a1a;
+    --text-light: #ffffff;
+    --text-muted: #aaaaaa;
+}
+/* This applies to the entire page */
+body {
+    background-color: var(--bg); /* Dark grey background */
+    font-family: 'Crimson Text', Georgia, serif;
+    margin: 0;          /* Removes default white gap around the page */
+    padding: 0;
+    min-height: 100vh;  /* Makes the background fill the full screen height */
+    display: flex;
+    justify-content: center; /* Centers content horizontally */
+    align-items: center;     /* Centers content vertically */
+    color: #ffffff;
+}
+
+/* The main wrapper that keeps everything from stretching too wide */
+.container {
+    width: 100%;
+    max-width: 800px;  /* Page content won't get wider than 800px */
+    padding: 40px 20px;
+    text-align: center;
+}
+
+
+/* =====================
+    HEADER / TITLE
+   ===================== */
+
+header h1 {
+    font-size: 3rem;       /* Large title text */
+    color: #f0e68c;        /* Warm gold color */
+    margin-bottom: 8px;
+    letter-spacing: 2px;   /* Slight spacing between letters */
+}
+
+header p {
+    font-size: 1.2rem;
+    color: #cccccc;        /* Light grey subtitle */
+    margin-top: 0;
+    margin-bottom: 50px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+
+/* =====================
+    LOBBY LAYOUT
+   ===================== */
+
+/* Makes the two cards sit side by side */
+.lobby {
+    display: flex;          /* Puts children in a row */
+    gap: 30px;              /* Space between the two cards */
+    justify-content: center;
+    flex-wrap: wrap;        /* If screen is too small, cards stack vertically */
+}
+
+
+/* =====================
+    LOBBY CARDS
+   ===================== */
+
+.lobby-card {
+    background-color: #3a3a3a;   /* Slightly lighter grey than the background */
+    border: 1px solid #555555;
+    border-radius: 12px;          /* Rounded corners */
+    padding: 36px 32px;
+    width: 280px;
+    display: flex;
+    flex-direction: column;       /* Stack children top to bottom */
+    gap: 14px;                    /* Space between elements inside the card */
+    align-items: center
+}
+
+.lobby-card h2 {
+    font-size: 1.4rem;
+    color: #f0e68c;       /* Gold to match the header */
+    margin: 0;
+}
+
+.lobby-card p {
+    color: #aaaaaa;       /* Muted grey description text */
+    font-size: 0.95rem;
+    margin: 0;
+    line-height: 1.5;     /* A bit of breathing room between lines */
+}
+
+
+/* =====================
+    SHARE LINK
+   ===================== */
+
+.share-link {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-top: 1px solid #555;
+    padding-top: 12px;
+}
+
+.share-link.hidden { display: none; }
+
+.share-label {
+    font-size: 0.75rem;
+    color: #aaa;
+    margin: 0;
+    text-align: left;
+}
+
+.share-row {
+    display: flex;
+    gap: 6px;
+    width: 100%;
+}
+
+.share-row input {
+    flex: 1;
+    font-size: 0.75rem;
+    padding: 6px 10px;
+    min-width: 0;
+}
+
+.share-row button {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+}
+
+.share-hint {
+    font-size: 0.75rem;
+    color: #888;
+    margin: 0;
+    text-align: center;
+}
+
+.share-hint a {
+    color: #f0e68c;
+    text-decoration: none;
+}
+
+/* =====================
+    INPUT FIELD
+   ===================== */
+
+input[type="text"] {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #666666;
+    background-color: #2b2b2b;  /* Matches the page background */
+    color: #ffffff;
+    font-size: 1rem;
+    outline: none;               /* Removes the default blue browser outline */
+}
+
+/* Changes the border color when the user clicks into the input */
+input[type="text"]:focus {
+    border-color: #f0e68c;
+}
+
+
+/* =====================
+    BUTTONS
+   ===================== */
+
+button {
+    padding: 12px;
+    width: 160px;
+    margin: 0 auto;
+    border-radius: 8px;
+    border: none;                /* Removes default browser border */
+    background-color: #f0e68c;  /* Gold button */
+    color: #1a1a1a;              /* Dark text on the gold button */
+    font-size: 1rem;
+    font-family: Georgia, serif;
+    cursor: pointer;             /* Shows a hand cursor on hover */
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: background-color 0.2s ease; /* Smooth color change on hover */
+}
+
+/* Slightly darker gold when you hover over the button */
+button:hover {
+    background-color: #d4c873;
+}
+
+/* =====================
+    GAME PAGE BODY
+   ===================== */
+.game-body {
+    background: radial-gradient(ellipse at center, #1a5c38 0%, #144d2f 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    gap: 16px;
+}
+
+
+/* =====================
+    TABLE
+   ===================== */
+.table-wrapper {
+    position: relative;
+    width: min(900px, 95vw);
+    aspect-ratio: 16 / 9;
+}
+
+.poker-table {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, var(--felt-light) 0%, var(--felt) 55%, var(--felt-dark) 100%);
+    border-radius: 50%;
+    border: 14px solid var(--table-wood);
+    box-shadow:
+        0 0 0 4px var(--table-border),
+        0 0 60px rgba(0,0,0,0.8),
+        inset 0 0 80px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: visible;
+}
+
+.felt-overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background-image: repeating-linear-gradient(
+        45deg,
+        rgba(255,255,255,0.015) 0px,
+        rgba(255,255,255,0.015) 1px,
+        transparent 1px,
+        transparent 8px
+    );
+    pointer-events: none;
+}
+
+
+/* =====================
+    TABLE CENTER
+   ===================== */
+.table-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    z-index: 2;
+}
+
+.pot-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(240,230,140,0.3);
+    border-radius: 20px;
+    padding: 6px 18px;
+}
+
+.pot-label {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: var(--gold);
+    opacity: 0.7;
+}
+
+.pot-amount {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    font-weight: 700;
+}
+
+.community-cards { display: flex; gap: 8px; }
+
+.card-slot {
+    width: 52px;
+    height: 72px;
+    border-radius: 6px;
+    border: 2px dashed rgba(255,255,255,0.15);
+    background: rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--black);
+    transition: all 0.3s ease;
+}
+
+.card-slot.filled {
+    background: var(--card-bg);
+    border: 2px solid rgba(255,255,255,0.4);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    animation: cardDeal 0.3s ease;
+}
+
+.card-slot.red   { color: var(--red); }
+.card-slot.black { color: var(--black); }
+
+@keyframes cardDeal {
+    from { transform: scale(0.7) rotateY(90deg); opacity: 0; }
+    to   { transform: scale(1)   rotateY(0deg);  opacity: 1; }
+}
+
+.stage-label {
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    min-height: 14px;
+}
+
+
+/* =====================
+    PLAYER SEATS
+   ===================== */
+.seat {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.seat-1 { top: 5%;    left: 20%; transform: translate(-50%, 0); }
+.seat-2 { top: 5%;    left: 50%; transform: translate(-50%, 0); }
+.seat-3 { top: 5%;    left: 80%; transform: translate(-50%, 0); }
+.seat-4 { bottom: 5%; left: 80%; transform: translate(-50%, 0); }
+.seat-5 { bottom: 5%; left: 50%; transform: translate(-50%, 0); }
+.seat-6 { bottom: 5%; left: 20%; transform: translate(-50%, 0); }
+
+.player-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    border: 2px solid rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+}
+
+.seat.active .player-avatar {
+    border-color: var(--gold);
+    box-shadow: 0 0 14px rgba(240,230,140,0.5);
+    animation: pulse 1.5s infinite;
+}
+
+.seat.folded { opacity: 0.4; }
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 10px rgba(240,230,140,0.4); }
+    50%       { box-shadow: 0 0 20px rgba(240,230,140,0.8); }
+}
+
+.player-info {
+    text-align: center;
+    background: rgba(0,0,0,0.55);
+    border-radius: 8px;
+    padding: 4px 10px;
+    min-width: 90px;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.player-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100px;
+}
+
+.player-chips {
+    font-size: 0.75rem;
+    color: var(--gold);
+    font-weight: 600;
+}
+
+.player-position {
+    font-size: 0.6rem;
+    color: #f0c040;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    min-height: 11px;
+}
+
+.player-status {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    min-height: 12px;
+    text-transform: uppercase;
+}
+
+.player-cards { display: flex; gap: 3px; }
+
+.mini-card {
+    width: 22px;
+    height: 30px;
+    background: #fff;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    font-size: 0.55rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+.mini-card.back {
+    background: linear-gradient(135deg, #1a3a6b, #0d2040);
+    border: 1px solid #2a5aab;
+}
+
+
+/* =====================
+    YOUR HAND BAR
+   ===================== */
+.your-hand-bar {
+    width: min(900px, 95vw);
+    background: rgba(0,0,0,0.6);
+    border: 1px solid rgba(240,230,140,0.2);
+    border-radius: 16px;
+    padding: 16px 24px;
+}
+
+.your-hand-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.your-hole-cards { display: flex; gap: 10px; }
+
+.hole-card {
+    width: 64px;
+    height: 90px;
+    background: var(--card-bg);
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--black);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+    transition: transform 0.2s ease;
+}
+
+.hole-card:hover  { transform: translateY(-4px); }
+.hole-card.red    { color: var(--red); }
+.hole-card.face-down {
+    background: linear-gradient(135deg, #1a3a6b, #0d2040);
+    color: transparent;
+    border-color: #2a5aab;
+}
+
+
+/* =====================
+    ACTION PANEL
+   ===================== */
+.action-panel {
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.action-panel.visible { display: flex; }
+
+.new-round-panel {
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.new-round-panel.visible { display: flex; }
+
+.new-round-status {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.turn-indicator {
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+    color: var(--gold);
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.3; }
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.action-btn {
+    width: auto;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.15s ease;
+    font-family: 'Crimson Text', Georgia, serif;
+}
+
+.fold-btn  { background: #8b0000; color: #fff; }
+.fold-btn:hover  { background: #a00000; }
+.call-btn  { background: #1a5276; color: #fff; }
+.call-btn:hover  { background: #1f618d; }
+.check-btn { background: #145a32; color: #fff; }
+.check-btn:hover { background: #1e8449; }
+.raise-btn { background: var(--gold); color: var(--black); }
+.raise-btn:hover { background: var(--gold-dark); }
+
+.raise-group {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+#raise-input {
+    width: 90px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #555;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 0.9rem;
+    outline: none;
+    font-family: 'Crimson Text', Georgia, serif;
+}
+
+#raise-input:focus { border-color: var(--gold); }
+
+
+/* =====================
+    READY OVERLAY
+   ===================== */
+
+.ready-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.ready-overlay.hidden {
+    display: none;
+}
+
+.ready-box {
+    background: #1e1e1e;
+    border: 1px solid rgba(240, 230, 140, 0.3);
+    border-radius: 12px;
+    padding: 36px 48px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    min-width: 280px;
+}
+
+.ready-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.4rem;
+    color: var(--gold);
+    letter-spacing: 2px;
+}
+
+.code-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    background: rgba(240, 230, 140, 0.08);
+    border: 1px solid rgba(240, 230, 140, 0.25);
+    border-radius: 8px;
+    padding: 12px 20px;
+    width: 100%;
+}
+
+.code-label {
+    font-size: 0.7rem;
+    color: #aaa;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.code-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.room-code-display {
+    font-size: 2.2rem;
+    font-family: 'Playfair Display', Georgia, serif;
+    color: var(--gold);
+    letter-spacing: 10px;
+    font-weight: 700;
+}
+
+.copy-code-btn {
+    padding: 4px 12px;
+    font-size: 0.75rem;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    border-radius: 4px;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+.ready-status {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+.ready-list {
+    font-size: 0.8rem;
+    color: #aaa;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-height: 20px;
+}
+
+.ready-btn {
+    margin-top: 8px;
+    padding: 10px 32px;
+    background: var(--gold);
+    color: #1a1a1a;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.ready-btn:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+/* =====================
+    GAME LOG
+   ===================== */
+.game-log {
+    width: min(900px, 95vw);
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 12px 16px;
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+.log-title {
+    font-size: 0.6rem;
+    letter-spacing: 4px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.log-entries {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.log-entry {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border-left: 2px solid rgba(240,230,140,0.2);
+    padding-left: 8px;
+}
+
+.log-entry.highlight {
+    color: var(--gold);
+    border-left-color: var(--gold);
+}

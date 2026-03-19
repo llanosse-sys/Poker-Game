@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Texas Hold'em Poker</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <!-- Main container that holds everything on this page -->
+    <div class="container">
+        <!-- Header section with the game title -->
+        <header>
+            <h1>Welcome to Poker</h1>
+            <p>Texas Hold'em</p>
+        </header>
+
+        <!-- Lobby section where players will join or create a game-->
+        <main class="lobby">
+
+            <!-- Create a new game -->
+            <section class="lobby-card">
+                <h2>Create Game</h2>
+                <p>Start a new table — a code will be generated for your friends.</p>
+                <input type="text" id="create-name" placeholder="Your name" maxlength="20" />
+                <input type="number" id="starting-chips" placeholder="Starting chips (default 1000)" min="100" />
+                <input type="number" id="small-blind" placeholder="Small blind (default 5)" min="1" />
+                <input type="number" id="big-blind" placeholder="Big blind (default 10)" min="2" />
+                <button id="create-btn">Create Game</button>
+            </section>
+
+            <!-- Join an existing game -->
+            <section class="lobby-card">
+                <h2>Join Game</h2>
+                <p>Enter your name and the room code from your friend.</p>
+                <input type="text" id="join-name" placeholder="Your name" maxlength="20" />
+                <input type="text" id="join-code" placeholder="Room code" maxlength="4" />
+                <button id="join-btn">Join Game</button>
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

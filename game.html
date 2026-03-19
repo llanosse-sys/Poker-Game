@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Texas Hold'em - Table</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+</head>
+<body class="game-body">
+
+    <!-- ===================== POKER TABLE ===================== -->
+    <div class="table-wrapper">
+        <div class="poker-table">
+
+            <!-- Felt texture overlay -->
+            <div class="felt-overlay"></div>
+
+            <!-- Center info: pot + community cards -->
+            <div class="table-center">
+                <div class="pot-display">
+                    <span class="pot-label">POT</span>
+                    <span class="pot-amount" id="pot-amount">$0</span>
+                </div>
+
+                <!-- Community cards (flop, turn, river) -->
+                <div class="community-cards" id="community-cards">
+                    <div class="card-slot" id="cc-0"></div>
+                    <div class="card-slot" id="cc-1"></div>
+                    <div class="card-slot" id="cc-2"></div>
+                    <div class="card-slot" id="cc-3"></div>
+                    <div class="card-slot" id="cc-4"></div>
+                </div>
+
+                <div class="stage-label" id="stage-label"></div>
+            </div>
+
+            <!-- Player seats around the table (6 seats) -->
+            <!-- Positions: top-left, top-center, top-right, bottom-right, bottom-center, bottom-left -->
+            <div class="seat seat-1" id="seat-0">
+                <div class="player-avatar" id="avatar-0"></div>
+                <div class="player-info">
+                    <div class="player-name" id="name-0">Waiting...</div>
+                    <div class="player-position" id="position-0"></div>
+                    <div class="player-chips" id="chips-0">$1000</div>
+                    <div class="player-status" id="status-0"></div>
+                </div>
+                <div class="player-cards" id="cards-0"></div>
+            </div>
+
+            <div class="seat seat-2" id="seat-1">
+                <div class="player-avatar" id="avatar-1"></div>
+                <div class="player-info">
+                    <div class="player-name" id="name-1">Waiting...</div>
+                    <div class="player-position" id="position-1"></div>
+                    <div class="player-chips" id="chips-1">$1000</div>
+                    <div class="player-status" id="status-1"></div>
+                </div>
+                <div class="player-cards" id="cards-1"></div>
+            </div>
+
+            <div class="seat seat-3" id="seat-2">
+                <div class="player-avatar" id="avatar-2"></div>
+                <div class="player-info">
+                    <div class="player-name" id="name-2">Waiting...</div>
+                    <div class="player-position" id="position-2"></div>
+                    <div class="player-chips" id="chips-2">$1000</div>
+                    <div class="player-status" id="status-2"></div>
+                </div>
+                <div class="player-cards" id="cards-2"></div>
+            </div>
+
+            <div class="seat seat-4" id="seat-3">
+                <div class="player-avatar" id="avatar-3"></div>
+                <div class="player-info">
+                    <div class="player-name" id="name-3">Waiting...</div>
+                    <div class="player-position" id="position-3"></div>
+                    <div class="player-chips" id="chips-3">$1000</div>
+                    <div class="player-status" id="status-3"></div>
+                </div>
+                <div class="player-cards" id="cards-3"></div>
+            </div>
+
+            <div class="seat seat-5" id="seat-4">
+                <div class="player-avatar" id="avatar-4"></div>
+                <div class="player-info">
+                    <div class="player-name" id="name-4">Waiting...</div>
+                    <div class="player-position" id="position-4"></div>
+                    <div class="player-chips" id="chips-4">$1000</div>
+                    <div class="player-status" id="status-4"></div>
+                </div>
+                <div class="player-cards" id="cards-4"></div>
+            </div>
+
+            <div class="seat seat-6" id="seat-5">
+                <div class="player-avatar" id="avatar-5"></div>
+                <div class="player-info">
+                    <div class="player-name" id="name-5">Waiting...</div>
+                    <div class="player-position" id="position-5"></div>
+                    <div class="player-chips" id="chips-5">$1000</div>
+                    <div class="player-status" id="status-5"></div>
+                </div>
+                <div class="player-cards" id="cards-5"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===================== YOUR HAND ===================== -->
+    <!-- Fixed at the bottom — always shows YOUR hole cards -->
+    <div class="your-hand-bar">
+        <div class="your-hand-inner">
+
+            <div class="your-hole-cards">
+                <div class="hole-card" id="hole-card-0">?</div>
+                <div class="hole-card" id="hole-card-1">?</div>
+            </div>
+
+            <!-- New round prompt — shown after each hand ends -->
+            <div class="new-round-panel" id="new-round-panel">
+                <div class="turn-indicator">HAND OVER</div>
+                <div class="new-round-status" id="new-round-status">0 / 0 ready</div>
+                <button class="action-btn check-btn" id="btn-new-round">New Round</button>
+            </div>
+
+            <!-- Action buttons — hidden until it's your turn -->
+            <div class="action-panel" id="action-panel">
+                <div class="turn-indicator">YOUR TURN</div>
+                <div class="action-buttons">
+                    <button class="action-btn fold-btn" id="btn-fold">Fold</button>
+                    <button class="action-btn call-btn" id="btn-call">Call <span id="call-amount"></span></button>
+                    <button class="action-btn check-btn" id="btn-check">Check</button>
+                    <div class="raise-group">
+                        <button class="action-btn raise-btn" id="btn-raise">Raise</button>
+                        <input type="number" id="raise-input" placeholder="Amount" min="0" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===================== GAME LOG ===================== -->
+    <div class="game-log" id="game-log">
+        <div class="log-title">GAME LOG</div>
+        <div class="log-entries" id="log-entries"></div>
+    </div>
+
+    <!-- ===================== READY OVERLAY ===================== -->
+    <div class="ready-overlay" id="ready-overlay">
+        <div class="ready-box">
+            <div class="ready-title">Waiting for Players</div>
+            <div class="code-section" id="code-section" style="display:none">
+                <div class="code-label">Share this code with friends:</div>
+                <div class="code-row">
+                    <div class="room-code-display" id="room-code-display"></div>
+                    <button class="copy-code-btn" id="copy-code-btn">Copy</button>
+                </div>
+            </div>
+            <div class="ready-status" id="ready-status">Waiting for players...</div>
+            <div class="ready-list" id="ready-list"></div>
+            <button class="ready-btn" id="btn-ready">Ready Up</button>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
