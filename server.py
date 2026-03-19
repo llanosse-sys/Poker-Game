@@ -34,7 +34,6 @@ async def http_handler(_connection, request):
     from websockets.http11 import Response
     from websockets.datastructures import Headers
 
-    # Let WebSocket upgrade requests through untouched
     if request.headers.get("Upgrade", "").lower() == "websocket":
         return None
 
@@ -72,9 +71,9 @@ rooms = {}
 class Room:
     def __init__(self, code):
         self.code = code
-        self.connected_players = {}  # websocket -> Player
-        self.ready_players = set()   # websockets of players who clicked Ready
-        self.game = None             # Set once the game starts
+        self.connected_players = {}
+        self.ready_players = set()
+        self.game = None
         self.starting_chips = 1000
         self.small_blind    = 5
         self.big_blind      = 10
@@ -179,7 +178,7 @@ async def handle_player(websocket):
             room = rooms[code]
 
         else:
-            return  # Unknown action — drop the connection
+            return
 
         # Register the player in the room and tell everyone
         player = Player(name=player_name, chips=room.starting_chips, websocket=websocket)

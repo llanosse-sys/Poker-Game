@@ -4,8 +4,8 @@
 // -------------------------------------------------------
 let socket = null;
 let myName = null;
-let playerOrder = [];   // List of player names in seat order
-let myIndex = -1;       // Which seat am I in?
+let playerOrder = [];
+let myIndex = -1;
 
 
 // -------------------------------------------------------
@@ -25,7 +25,7 @@ function log(message, highlight = false) {
     const entry = document.createElement("div");
     entry.className = "log-entry" + (highlight ? " highlight" : "");
     entry.textContent = message;
-    entries.prepend(entry);  // Newest messages at the top
+    entries.prepend(entry);
 }
 
 
